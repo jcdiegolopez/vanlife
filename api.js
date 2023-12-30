@@ -1,36 +1,34 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {collection, getDocs, doc, getDoc, getFirestore} from "firebase/firestore/lite"
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import {
+    getFirestore,
+    collection,
+    doc,
+    getDocs,
+    getDoc,
+    query,
+    where
+} from "firebase/firestore/lite"
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAK_OhwoIp5sE-s8S4bKSxYavdgGCAqkUg",
-  authDomain: "vanlife-d57a9.firebaseapp.com",
-  projectId: "vanlife-d57a9",
-  storageBucket: "vanlife-d57a9.appspot.com",
-  messagingSenderId: "448501742817",
-  appId: "1:448501742817:web:31f0bc79ab37b324b64ba0",
-  measurementId: "G-FM2QMCQQKM"
+    apiKey: "AIzaSyD_k3v3HK3tKEqhlqFHPkwogW7PqEqhGhk",
+    authDomain: "vanlife-a1af5.firebaseapp.com",
+    projectId: "vanlife-a1af5",
+    storageBucket: "vanlife-a1af5.appspot.com",
+    messagingSenderId: "803007000356",
+    appId: "1:803007000356:web:446cd3a1ca406839258db1"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
-const vansCollectionRef = collection(db,'vans')
+const vansCollectionRef = collection(db, "vans")
 
-
-
-export async function getVans(){
+export async function getVans() {
     const querySnapshot = await getDocs(vansCollectionRef)
     const dataArr = querySnapshot.docs.map(doc => ({
         ...doc.data(),
         id: doc.id
     }))
-    console.log(dataArr)
     return dataArr
 }
 
